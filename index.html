@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <script>
+        function calculateBMI() {
+            var weight = parseFloat(document.getElementById("weight").value);
+            var height = parseFloat(document.getElementById("height").value);
+            var age = parseFloat(document.getElementById("Age").value);
+            var name = (document.getElementById("Name").value);
+            var gender = (document.querySelector('input[name="Gander"]:checked')?.value);
+
+            if (isNaN(weight) || isNaN(height) || height <= 0 || weight <= 0 || isNaN(age)) {
+                document.getElementById("result").innerHTML = "plz put right weight and height information";
+                return;
+            }
+            var name = name;
+            var age = age;
+            var gender = gender;
+            var bmi = weight / (height * height);
+            bmi = bmi.toFixed(2);
+
+            var resultText = "Your BMI is :" + bmi;
+            var resultText1 = "Your Name is :" + name;
+            var resultText2 = "Your gender is :" + gender;
+            var resultText3 = "Your Age is :" + age;
+
+            if (bmi < 18.5) {
+                resultText += "<br>You are Under-Weight";
+            } else if (bmi >= 18.5 && bmi < 24.9) {
+                resultText += "<br>You are Normal-Weight";
+            } else if (bmi >= 25 && bmi < 29.9) {
+                resultText += "<br>You are Over-Weight";
+            } else {
+                resultText += "<br>You are Obese";
+            }
+            document.getElementById("result").innerHTML = resultText;
+            document.getElementById("age").innerHTML = resultText3;
+            document.getElementById("name").innerHTML = resultText1;
+            document.getElementById("gender").innerHTML = resultText2;
+
+
+        }
+    </script>
+    <style>
+        .border {
+            background-color: black;
+            margin-top: 10%;
+            padding: 10%;
+            margin-right: 10%;
+            
+        }
+        .box{
+            color: yellow;
+            border-radius: 10px;
+            box-shadow: 10px 10px 12px 0 rgba(69, 56, 244, 1.5);
+            background-color: #0b0909;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <h2> BMI Calculator </h2>
+            <div class="d-flex flex-wrap">
+                <div class="card p-2 m-2" style="width: 250px;">
+                    <img class="card-img-top" src="./hpic.jpg" height="200">
+                    <div class="card-header">
+                        <h3 class="card-title">BMI Calculator</h3>
+                        <p class="card-subtitle">Check Metric Units</p>
+                    </div>
+                    <div class="card-body">
+                        <dl>
+                            <dt><label for="Name"> Name :</label>
+                                <input type="text" id="Name" class="form-control" placeholder="Your Name">
+                            </dt>
+                            <dt><label for="age"> Age :</label>
+                                <input type="number" id="Age" class="form-control" placeholder="Your Age">
+                            </dt>
+                            <dt>
+                                <label for="Gender">Gander :
+                                    <input type="radio" name="Gander" id="male" value="Male"><span>Male</span>
+                                    <input type="radio" name="Gander" id="female" value="Female"><span>Female</span>
+                                </label>
+                            </dt>
+                            <dt><label for="height">Height M:</label>
+                                <input type="number" id="height" step="0.01" placeholder="Your Height">
+                            </dt>
+
+                            <dt><label for="weight">Weight Kg :</label>
+                                <input type="number" id="weight" placeholder="Your Weight">
+                            </dt>
+                        </dl>
+
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-danger w-100" onclick="calculateBMI()">
+                            <span class="bi bi-heart-pulse p-1"></span>Result
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6">
+
+            <div class="border border-black">
+                <h2 class="box"> Your Body Mass Index</h2>
+                <div id="name" class="text-center bg-primary text-white mt-4"></div>
+                <div id="age" class="text-center bg-success text-white mt-4"></div>
+                <div id="gender" class="text-center bg-warning text-dark mt-4"></div>
+                <div id="result" class="text-center bg-info text-dark mt-4"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
